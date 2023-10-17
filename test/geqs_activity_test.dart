@@ -2,6 +2,20 @@ import 'package:geqs_activity/geqs_activity.dart';
 import 'package:test/test.dart';
 
 void main() {
+  group('Exceptions', () {
+    test('Throws', () {
+      expect(() => classifyAthlet(121), throwsArgumentError);
+
+      expect(() => classifyAthlet(-1), throwsArgumentError);
+    });
+
+    test('Valid inputs (0 - 120)', () {
+      for (var age in [for (var i = 0; i <= 120; i++) i]) {
+        expect(() => classifyAthlet(age), returnsNormally);
+      }
+    });
+  });
+
   group('Undefined cases', () {
     test('Under 15', () {
       for (var age in [for (var i = 0; i < 15; i++) i]) {
@@ -11,6 +25,7 @@ void main() {
 
     test('Above 35', () {
       expect(classifyAthlet(36), isA<Master>());
+      // Ajustado no ultimo commit
     });
   });
 

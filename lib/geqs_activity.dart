@@ -14,14 +14,13 @@ AthletCategory classifyAthlet(int age) {
       >= 15 && <= 17 => Base(),
       18 || 19 => Under20(),
       >= 20 && <= 34 => Profesional(),
-      <= 35 => Master(),
-      _ => Undefined()
+      _ => Master(), // porque casos menores ja sao tratados, so resta >= 35
     };
   } else {
-    throw ArgumentError.value(age, null, 'Invalid age!');
+    throw ArgumentError.value(age, null, 'Invalid age');
   }
 }
 
 bool _validateAge(int age) {
-  return age > 0 || age <= 120;
+  return age >= 0 && age <= 120;
 }
